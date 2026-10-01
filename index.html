@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CyberAccess 2027 | Workshop on Accessible and Inclusive Cybersecurity and Privacy</title>
+<meta name="description" content="CyberAccess 2027: the 1st International Workshop on Accessible and Inclusive Cybersecurity and Privacy, held with ACNS 2027 at Royal Holloway, University of London, 28 June to 1 July 2027.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23161A33'/%3E%3Ccircle cx='11' cy='9' r='3.5' fill='%23FFD23F'/%3E%3Ccircle cx='21' cy='9' r='3.5' fill='%23FFD23F'/%3E%3Ccircle cx='11' cy='16' r='1.5' fill='%23ffffff66'/%3E%3Ccircle cx='21' cy='16' r='1.5' fill='%23ffffff66'/%3E%3Ccircle cx='11' cy='23' r='1.5' fill='%23ffffff66'/%3E%3Ccircle cx='21' cy='23' r='1.5' fill='%23ffffff66'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#FAFAF7; --surface:#FFFFFF; --ink:#161A33; --muted:#454B63;
+  --line:#D6D9E3; --accent:#00666A; --accent-ink:#FFFFFF;
+  --mark:#FFD23F; --mark-ink:#161A33; --dot-off:#B9BDCB;
+  --measure:68ch;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1328; --surface:#171C36; --ink:#F1F2F7; --muted:#B8BDD1;
+    --line:#2E3557; --accent:#6FD6D0; --accent-ink:#0F1328;
+    --mark:#FFD23F; --mark-ink:#0F1328; --dot-off:#3A4166;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1328; --surface:#171C36; --ink:#F1F2F7; --muted:#B8BDD1;
+  --line:#2E3557; --accent:#6FD6D0; --accent-ink:#0F1328;
+  --mark:#FFD23F; --mark-ink:#0F1328; --dot-off:#3A4166;
+  color-scheme:dark;
+}
+:root[data-size="l"]{font-size:112.5%}
+:root[data-size="xl"]{font-size:125%}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:5.5rem}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Atkinson Hyperlegible",Verdana,"Segoe UI",Arial,sans-serif;
+  font-size:1.0625rem;line-height:1.65;
+  -webkit-text-size-adjust:100%;
+}
+img,svg{max-width:100%}
+a{color:var(--accent);text-underline-offset:.2em;text-decoration-thickness:.08em}
+a:hover{text-decoration-thickness:.16em}
+:focus-visible{outline:3px solid var(--mark);outline-offset:3px;box-shadow:0 0 0 6px var(--ink);border-radius:2px}
+
+.skip{position:absolute;left:1rem;top:-10rem;z-index:100;background:var(--mark);color:var(--mark-ink);
+  padding:.75rem 1rem;font-weight:700;border-radius:4px}
+.skip:focus{top:1rem}
+.visually-hidden{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+.wrap{max-width:72rem;margin:0 auto;padding:0 1.5rem}
+
+/* Header */
+.site-header{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;gap:1.5rem;min-height:4.25rem}
+.brand{font-weight:700;font-size:1.125rem;color:var(--ink);text-decoration:none;white-space:nowrap;display:flex;align-items:center;gap:.6rem}
+.brand-dots{display:inline-grid;grid-template-columns:repeat(2,7px);gap:3px}
+.brand-dots i{width:7px;height:7px;border-radius:50%;background:var(--dot-off)}
+.brand-dots i.on{background:var(--mark);box-shadow:0 0 0 1px var(--ink)}
+nav.main{flex:1;overflow-x:auto;scrollbar-width:thin}
+nav.main ul{list-style:none;margin:0;padding:.25rem 0;display:flex;gap:.25rem}
+nav.main a{display:block;padding:.45rem .7rem;color:var(--ink);text-decoration:none;border-radius:4px;white-space:nowrap}
+nav.main a:hover{background:var(--surface);text-decoration:underline}
+nav.main a[aria-current="true"]{background:var(--ink);color:var(--bg)}
+
+.prefs{display:flex;gap:.5rem;align-items:center}
+.prefs button{font:inherit;font-size:.9375rem;color:var(--ink);background:var(--surface);border:1px solid var(--line);
+  border-radius:4px;min-height:2.5rem;min-width:2.5rem;padding:0 .7rem;cursor:pointer}
+.prefs button:hover{border-color:var(--ink)}
+@media (max-width:60rem){
+  .bar{flex-wrap:wrap;gap:.25rem 1rem;padding-top:.5rem;padding-bottom:.5rem}
+  nav.main{order:3;flex-basis:100%}
+  .prefs{margin-left:auto}
+}
+
+/* Hero */
+.hero{padding:4.5rem 0 3.5rem;border-bottom:1px solid var(--line)}
+.braille{display:block;width:min(100%,34rem);height:auto;margin-bottom:2rem}
+.braille .on{fill:var(--ink)}
+.braille .off{fill:var(--dot-off)}
+@media (prefers-reduced-motion:no-preference){
+  .braille .on{animation:raise .5s cubic-bezier(.3,1.4,.5,1) both;animation-delay:calc(var(--i) * 45ms);transform-box:fill-box;transform-origin:center}
+  @keyframes raise{from{transform:scale(.25);opacity:0}to{transform:scale(1);opacity:1}}
+}
+.hero h1{margin:0;font-size:clamp(2.75rem,8vw,5.5rem);line-height:1;letter-spacing:-.02em}
+.hero .full{margin:1.25rem 0 0;font-size:clamp(1.25rem,2.6vw,1.75rem);line-height:1.3;max-width:30ch;font-weight:400}
+.hero .where{margin:2rem 0 0;display:flex;flex-wrap:wrap;gap:.75rem 2.5rem;font-size:1.0625rem}
+.hero .where p{margin:0;max-width:none}
+.hero .where strong{display:block;font-size:.875rem;color:var(--muted);font-weight:400}
+.actions{margin-top:2.25rem;display:flex;flex-wrap:wrap;gap:.75rem}
+.btn{display:inline-flex;align-items:center;min-height:3rem;padding:0 1.25rem;border-radius:4px;font-weight:700;text-decoration:none;border:2px solid var(--ink)}
+.btn.primary{background:var(--ink);color:var(--bg)}
+.btn.secondary{color:var(--ink)}
+.btn:hover{text-decoration:underline}
+
+/* Sections */
+main section{padding:4rem 0;border-bottom:1px solid var(--line)}
+.sec{display:grid;grid-template-columns:14rem minmax(0,1fr);gap:2rem}
+@media (max-width:48rem){.sec{grid-template-columns:1fr;gap:1rem}}
+h2{margin:0;font-size:1.75rem;line-height:1.2}
+h3{font-size:1.25rem;line-height:1.3;margin:2rem 0 .5rem}
+p,li{max-width:var(--measure)}
+p{margin:0 0 1.1rem}
+.lead{font-size:1.1875rem}
+
+.topics{list-style:none;padding:0;margin:1rem 0 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(18rem,1fr));gap:0 2rem}
+.topics li{padding:.85rem 0 .85rem 1.75rem;border-top:1px solid var(--line);position:relative}
+.topics li::before{content:"";position:absolute;left:.15rem;top:1.35rem;width:.6rem;height:.6rem;border-radius:50%;background:var(--accent)}
+
+/* Timeline: a real sequence */
+.dates{list-style:none;padding:0;margin:0;position:relative}
+.dates li{display:grid;grid-template-columns:2rem 12rem 1fr;gap:1rem;align-items:baseline;padding:.9rem 0;max-width:none;position:relative}
+.dates li::before{content:"";grid-column:1;width:1rem;height:1rem;border-radius:50%;border:3px solid var(--ink);background:var(--bg);align-self:center;position:relative;z-index:1}
+.dates li::after{content:"";position:absolute;left:.47rem;top:0;bottom:0;width:2px;background:var(--line)}
+.dates li:first-child::after{top:50%}
+.dates li:last-child::after{bottom:50%}
+.dates li.event::before{background:var(--mark)}
+.dates time{font-weight:700}
+.dates .what{color:var(--ink)}
+@media (max-width:40rem){.dates li{grid-template-columns:2rem 1fr;gap:.1rem 1rem}.dates .what{grid-column:2}}
+.note{font-size:.9375rem;color:var(--muted);margin-top:1rem}
+
+.notice{background:var(--surface);border:1px solid var(--line);border-left:6px solid var(--mark);padding:1rem 1.25rem;border-radius:4px;margin:1.5rem 0;max-width:var(--measure)}
+.notice p:last-child{margin-bottom:0}
+
+ul.plain{padding-left:1.25rem}
+ul.plain li{margin-bottom:.5rem}
+
+.people{display:grid;grid-template-columns:repeat(auto-fit,minmax(20rem,1fr));gap:2.5rem}
+.person h3{margin:0}
+.person .role{color:var(--muted);margin:.25rem 0 1rem}
+
+.pc{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(19rem,1fr));gap:0 2rem}
+.pc li{padding:.8rem 0;border-top:1px solid var(--line)}
+.pc span{display:block;color:var(--muted);font-size:.9375rem}
+
+footer{padding:3rem 0 4rem;color:var(--muted);font-size:.9375rem}
+footer p{margin:0 0 .5rem}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="#top" aria-label="CyberAccess 2027, back to top">
+      <span class="brand-dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i></span>
+      CyberAccess 2027
+    </a>
+    <nav class="main" aria-label="Sections">
+      <ul>
+        <li><a href="#cfp">Call for papers</a></li>
+        <li><a href="#topics">Topics</a></li>
+        <li><a href="#dates">Dates</a></li>
+        <li><a href="#submission">Submission</a></li>
+        <li><a href="#chairs">Chairs</a></li>
+        <li><a href="#committee">Committee</a></li>
+        <li><a href="#venue">Venue</a></li>
+      </ul>
+    </nav>
+    <div class="prefs" role="group" aria-label="Display settings">
+      <button type="button" id="sizeBtn" aria-label="Text size: normal. Activate to enlarge text.">A<span aria-hidden="true">+</span></button>
+      <button type="button" id="themeBtn" aria-label="Colour theme: automatic. Activate to switch to light theme.">Theme</button>
+    </div>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+  <div class="hero" id="top">
+    <div class="wrap">
+      <svg class="braille" viewBox="0 0 554 50" aria-hidden="true" focusable="false"><circle class="on" style="--i:0" cx="9" cy="9" r="6.5"/><circle class="off" cx="9" cy="25" r="2"/><circle class="off" cx="9" cy="41" r="2"/><circle class="on" style="--i:1" cx="25" cy="9" r="6.5"/><circle class="off" cx="25" cy="25" r="2"/><circle class="off" cx="25" cy="41" r="2"/><circle class="on" style="--i:2" cx="61" cy="9" r="6.5"/><circle class="off" cx="61" cy="25" r="2"/><circle class="on" style="--i:3" cx="61" cy="41" r="6.5"/><circle class="on" style="--i:4" cx="77" cy="9" r="6.5"/><circle class="on" style="--i:5" cx="77" cy="25" r="6.5"/><circle class="on" style="--i:6" cx="77" cy="41" r="6.5"/><circle class="on" style="--i:7" cx="113" cy="9" r="6.5"/><circle class="on" style="--i:8" cx="113" cy="25" r="6.5"/><circle class="off" cx="113" cy="41" r="2"/><circle class="off" cx="129" cy="9" r="2"/><circle class="off" cx="129" cy="25" r="2"/><circle class="off" cx="129" cy="41" r="2"/><circle class="on" style="--i:9" cx="165" cy="9" r="6.5"/><circle class="off" cx="165" cy="25" r="2"/><circle class="off" cx="165" cy="41" r="2"/><circle class="off" cx="181" cy="9" r="2"/><circle class="on" style="--i:10" cx="181" cy="25" r="6.5"/><circle class="off" cx="181" cy="41" r="2"/><circle class="on" style="--i:11" cx="217" cy="9" r="6.5"/><circle class="on" style="--i:12" cx="217" cy="25" r="6.5"/><circle class="on" style="--i:13" cx="217" cy="41" r="6.5"/><circle class="off" cx="233" cy="9" r="2"/><circle class="on" style="--i:14" cx="233" cy="25" r="6.5"/><circle class="off" cx="233" cy="41" r="2"/><circle class="on" style="--i:15" cx="269" cy="9" r="6.5"/><circle class="off" cx="269" cy="25" r="2"/><circle class="off" cx="269" cy="41" r="2"/><circle class="off" cx="285" cy="9" r="2"/><circle class="off" cx="285" cy="25" r="2"/><circle class="off" cx="285" cy="41" r="2"/><circle class="on" style="--i:16" cx="321" cy="9" r="6.5"/><circle class="off" cx="321" cy="25" r="2"/><circle class="off" cx="321" cy="41" r="2"/><circle class="on" style="--i:17" cx="337" cy="9" r="6.5"/><circle class="off" cx="337" cy="25" r="2"/><circle class="off" cx="337" cy="41" r="2"/><circle class="on" style="--i:18" cx="373" cy="9" r="6.5"/><circle class="off" cx="373" cy="25" r="2"/><circle class="off" cx="373" cy="41" r="2"/><circle class="on" style="--i:19" cx="389" cy="9" r="6.5"/><circle class="off" cx="389" cy="25" r="2"/><circle class="off" cx="389" cy="41" r="2"/><circle class="on" style="--i:20" cx="425" cy="9" r="6.5"/><circle class="off" cx="425" cy="25" r="2"/><circle class="off" cx="425" cy="41" r="2"/><circle class="off" cx="441" cy="9" r="2"/><circle class="on" style="--i:21" cx="441" cy="25" r="6.5"/><circle class="off" cx="441" cy="41" r="2"/><circle class="off" cx="477" cy="9" r="2"/><circle class="on" style="--i:22" cx="477" cy="25" r="6.5"/><circle class="on" style="--i:23" cx="477" cy="41" r="6.5"/><circle class="on" style="--i:24" cx="493" cy="9" r="6.5"/><circle class="off" cx="493" cy="25" r="2"/><circle class="off" cx="493" cy="41" r="2"/><circle class="off" cx="529" cy="9" r="2"/><circle class="on" style="--i:25" cx="529" cy="25" r="6.5"/><circle class="on" style="--i:26" cx="529" cy="41" r="6.5"/><circle class="on" style="--i:27" cx="545" cy="9" r="6.5"/><circle class="off" cx="545" cy="25" r="2"/><circle class="off" cx="545" cy="41" r="2"/></svg>
+      <h1>CyberAccess 2027</h1>
+      <p class="full">1st International Workshop on Accessible and Inclusive Cybersecurity and Privacy</p>
+      <div class="where">
+        <p><strong>Held with</strong><a href="https://acns2027.isg.rhul.ac.uk/">ACNS 2027</a></p>
+        <p><strong>Where</strong>Royal Holloway, University of London, Egham, UK</p>
+        <p><strong>When</strong>Between 28 June and 1 July 2027 (exact day to be announced)</p>
+      </div>
+      <div class="actions">
+        <a class="btn primary" href="#cfp">Read the call for papers</a>
+        <a class="btn secondary" href="#dates">See important dates</a>
+      </div>
+    </div>
+  </div>
+
+  <section id="cfp" aria-labelledby="cfp-h">
+    <div class="wrap sec">
+      <h2 id="cfp-h">Call for papers</h2>
+      <div>
+        <p class="lead">Security and privacy mechanisms are used by everyone, but they are usually designed and evaluated for a narrow group of users.</p>
+        <p>Authentication mechanisms mostly assume that a person can see a screen, hold a device steadily, remember a code and receive a message on another device. Consent dialogues, permission prompts and security warnings mostly assume that all users have a particular level of technical knowledge, can quickly read dense text and can understand every instruction.</p>
+        <p>These assumptions do not hold for everyone, and they can weaken security and privacy for people with visual or hearing impairments, people with motor or cognitive disabilities, neurodivergent people, older adults, children and young people, people with limited digital literacy and people using a second language. These users may stop using security features, share their credentials or devices, or avoid recommended security practices because they feel these technologies were not designed with their needs in mind.</p>
+        <p>This also creates serious risks for people experiencing technology-facilitated abuse, where access to devices, accounts and personal data can be used to control, monitor or harm them. Now that all major sectors, including banking, healthcare, public services and entertainment, have moved online, security controls that do not cater for the accessibility and inclusion needs of these groups result in real security and privacy compromises. Designing security and privacy technologies that recognise the needs and experiences of these groups can make them more useful, accessible and inclusive.</p>
+        <p>CyberAccess welcomes research that treats inclusion and accessibility as key requirements of security and privacy engineering. We are interested in the whole journey: from understanding people’s needs and experiences, to designing, building and evaluating security and privacy technologies, to standards and policy. The main objective of CyberAccess is to understand what can be changed to make security and privacy technologies more inclusive, accessible and safe, without compromising security and privacy.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="topics" aria-labelledby="topics-h">
+    <div class="wrap sec">
+      <h2 id="topics-h">Topics of interest</h2>
+      <div>
+        <p>CyberAccess welcomes research on a broad range of topics, including but not limited to:</p>
+        <ul class="topics">
+          <li>Threat modelling and security for people with accessibility needs</li>
+          <li>Security and privacy of assistive technologies</li>
+          <li>Security, privacy and inclusion across cultural, linguistic and socioeconomic contexts</li>
+          <li>Trust, risk perception and security decision-making among diverse users</li>
+          <li>Methods and benchmarks for evaluating accessible and inclusive cybersecurity</li>
+          <li>Large language models and AI for accessible and inclusive security</li>
+          <li>Ethical and inclusive research methods in cybersecurity</li>
+          <li>Privacy and safety of technologies used by children and young people</li>
+          <li>Technology-facilitated abuse, and security and privacy in FemTech</li>
+          <li>Security and privacy for people with motor or cognitive disabilities</li>
+          <li>Security and privacy for people with physical, sensory or perceptual disabilities</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="dates" aria-labelledby="dates-h">
+    <div class="wrap sec">
+      <h2 id="dates-h">Important dates</h2>
+      <div>
+        <ol class="dates">
+          <!-- TODO: confirm these dates. They follow the ACNS 2027 suggested workshop timeline. -->
+          <li><time datetime="2027-02-19">19 February 2027</time><span class="what">Paper submission deadline</span></li>
+          <li><time datetime="2027-03-21">21 March 2027</time><span class="what">Author notification</span></li>
+          <li><time datetime="2027-06-14">14 June 2027</time><span class="what">Camera-ready papers for the proceedings</span></li>
+          <li class="event"><time datetime="2027-06-28">28 June – 1 July 2027</time><span class="what">Workshop at ACNS 2027 (exact day to be announced)</span></li>
+        </ol>
+        <p class="note">All deadlines are 23:59 Anywhere on Earth (AoE). Dates are provisional and may change.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="submission" aria-labelledby="sub-h">
+    <div class="wrap sec">
+      <h2 id="sub-h">Submission</h2>
+      <div>
+        <!-- TODO: add page limit, anonymity policy and submission link once decided. -->
+        <p>Papers must be written in English and formatted using the <a href="https://www.springer.com/gp/computer-science/lncs/conference-proceedings-guidelines">Springer LNCS template</a>. The page limit, review policy and submission link will be announced here soon.</p>
+        <ul class="plain">
+          <li>Accepted papers will appear in the ACNS 2027 workshop post-proceedings, published by Springer in the Lecture Notes in Computer Science (LNCS) series.</li>
+          <li>Presentations must be given in person at the workshop.</li>
+          <li>At least one author of each accepted paper must register for ACNS 2027 at the author rate.</li>
+        </ul>
+        <div class="notice">
+          <p><strong>Best Workshop Paper Award.</strong> Papers accepted at CyberAccess are eligible for the ACNS 2027 Best Workshop Paper Award, a EUR 500 prize sponsored by Springer and selected from all ACNS workshops.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="chairs" aria-labelledby="chairs-h">
+    <div class="wrap sec">
+      <h2 id="chairs-h">Programme chairs</h2>
+      <div class="people">
+        <article class="person">
+          <h3>Dr Waleed Bin Shahid</h3>
+          <p class="role">Lecturer, Information Security Group, Department of Computing, Security and Mathematics, Royal Holloway, University of London, UK</p>
+          <p>Waleed is a systems security researcher whose work also focuses on inclusivity in cybersecurity. He is interested in understanding the weaknesses and limitations of security systems and software for people with different abilities, including neurodivergent people. He also explores how LLMs and AI can be used to build more secure and inclusive systems that better consider the needs of people with different abilities.</p>
+        </article>
+        <article class="person">
+          <h3>Dr Maryam Mehrnezhad</h3>
+          <p class="role">Reader, Information Security Group, Department of Computing, Security and Mathematics, Royal Holloway, University of London, UK</p>
+          <p>Maryam’s research focuses on cyber safety, security and privacy, with a keen focus on real-world issues. She studies the security and privacy risks of emerging technologies, including IoT devices, smart cameras and health technologies. Her work aims to protect people at risk, including children, people with disabilities, and victims and survivors of technology-facilitated abuse, and to help them have better control over their data through accessible, ethical and secure technologies.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="committee" aria-labelledby="pc-h">
+    <div class="wrap sec">
+      <h2 id="pc-h">Programme committee</h2>
+      <div>
+        <p class="note" style="margin-top:0">Tentative list, to be confirmed.</p>
+        <ul class="pc">
+          <li>Lizzie Coles-Kemp<span>Royal Holloway, University of London, UK</span></li>
+          <li>Scott Harper<span>Newcastle University, UK</span></li>
+          <li>Partha Das Chowdhury<span>University of Bristol, UK</span></li>
+          <li>Syed Bilal Naqvi<span>LUT University, Finland</span></li>
+          <li>Irum Feroze<span>University of Greater Manchester, UK</span></li>
+          <li>Narmeen Shafqat<span>National University of Sciences and Technology, Pakistan</span></li>
+          <li>Taylor Robinson<span>Royal Holloway, University of London, UK</span></li>
+          <li>Ehsan Toreini<span>Samsung R&amp;D, UK</span></li>
+          <li>James Clarke<span>University of Surrey, UK</span></li>
+          <li>Teresa Almeida<span>University of Lisbon, Portugal</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="venue" aria-labelledby="venue-h">
+    <div class="wrap sec">
+      <h2 id="venue-h">Venue and registration</h2>
+      <div>
+        <p>CyberAccess takes place alongside <a href="https://acns2027.isg.rhul.ac.uk/">ACNS 2027</a>, the 25th International Conference on Applied Cryptography and Network Security, in the Windsor Building at Royal Holloway, University of London. The campus is in Egham, Surrey, close to London Heathrow airport.</p>
+        <p>Registration, travel and accommodation are handled by the main conference. See the <a href="https://acns2027.isg.rhul.ac.uk/registration">ACNS 2027 registration page</a> and <a href="https://acns2027.isg.rhul.ac.uk/info">practical information</a>.</p>
+        <h3>Contact</h3>
+        <!-- TODO: add a contact email address. -->
+        <p>For questions about the workshop, contact the programme chairs. Contact details will be added soon.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>CyberAccess 2027 is a satellite workshop of ACNS 2027.</p>
+    <p>This site aims to meet WCAG 2.2 AA. If anything here is hard to use, please let the programme chairs know.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var root=document.documentElement;
+  function get(k){try{return localStorage.getItem(k)}catch(e){return null}}
+  function set(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+
+  // Text size
+  var sizes=["m","l","xl"], sizeNames={m:"normal",l:"large",xl:"extra large"};
+  var size=get("ca-size"); if(sizes.indexOf(size)<0) size="m";
+  var sizeBtn=document.getElementById("sizeBtn");
+  function applySize(){
+    if(size==="m") root.removeAttribute("data-size"); else root.setAttribute("data-size",size);
+    var next=sizes[(sizes.indexOf(size)+1)%3];
+    sizeBtn.setAttribute("aria-label","Text size: "+sizeNames[size]+". Activate to switch to "+sizeNames[next]+".");
+  }
+  sizeBtn.addEventListener("click",function(){size=sizes[(sizes.indexOf(size)+1)%3];set("ca-size",size);applySize()});
+  applySize();
+
+  // Theme
+  var themes=["auto","light","dark"];
+  var theme=get("ca-theme"); if(themes.indexOf(theme)<0) theme="auto";
+  var themeBtn=document.getElementById("themeBtn");
+  function applyTheme(){
+    if(theme==="auto") root.removeAttribute("data-theme"); else root.setAttribute("data-theme",theme);
+    var next=themes[(themes.indexOf(theme)+1)%3];
+    themeBtn.textContent="Theme: "+(theme==="auto"?"Auto":theme==="light"?"Light":"Dark");
+    themeBtn.setAttribute("aria-label","Colour theme: "+(theme==="auto"?"automatic":theme)+". Activate to switch to "+(next==="auto"?"automatic":next)+".");
+  }
+  themeBtn.addEventListener("click",function(){theme=themes[(themes.indexOf(theme)+1)%3];set("ca-theme",theme);applyTheme()});
+  applyTheme();
+
+  // Highlight the current section in the nav
+  var links=[].slice.call(document.querySelectorAll("nav.main a"));
+  if("IntersectionObserver" in window){
+    var obs=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){
+          links.forEach(function(a){
+            if(a.getAttribute("href")==="#"+en.target.id) a.setAttribute("aria-current","true"); else a.removeAttribute("aria-current");
+          });
+        }
+      });
+    },{rootMargin:"-40% 0px -55% 0px"});
+    links.forEach(function(a){var s=document.querySelector(a.getAttribute("href")); if(s) obs.observe(s)});
+  }
+})();
+</script>
+</body>
+</html>
